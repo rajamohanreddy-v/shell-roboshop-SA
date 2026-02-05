@@ -4,18 +4,18 @@ app_name="redis"
 
 dnf module disable redis -y &>>"$LOGS_FILE"
 dnf module enable redis:7 -y &>>"$LOGS_FILE"
-validate $? "enabling redis"
+VALIDATE $? "enabling redis"
 
 dnf install redis -y &>>"$LOGS_FILE"
-validate $? "Installing redis"
+VALIDATE $? "Installing redis"
 
 sed -i 's/127.0.0.1/0.0.0.0/g' /etc/redis/redis.conf &>>"$LOGS_FILE"
-validate $? "redis now heariing on internet"
+VALIDATE $? "redis now heariing on internet"
 
 sed -i 's/protected-mode yes/protected-mode no/g' /etc/redis/redis.conf &>>"$LOGS_FILE"
-validate $? "disabling protect mode"
+VALIDATE $? "disabling protect mode"
 
 systemctl enable redis &>>"$LOGS_FILE"
 systemctl restart redis &>>"$LOGS_FILE"
-validate $? "redis starting"
+VALIDATE $? "redis starting"
 
