@@ -96,7 +96,7 @@ service_setup() {
 
     systemctl daemon-reload
     systemctl enable "$app_name"
-    systemctl start "$ap_name"
+    systemctl start "$app_name"
     VALIDATE $? "Starting the service"
 }
 
