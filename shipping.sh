@@ -1,6 +1,6 @@
 #!/bin/bash
 source ./common.sh
-app_name="cart"
+app_name="shipping"
 
 checkroot
 app_setup
