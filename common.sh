@@ -82,6 +82,9 @@ app_setup() {
     curl -L -o /tmp/$app_name.zip https://roboshop-artifacts.s3.amazonaws.com/$app_name-v3.zip  &>>$LOGS_FILE
     VALIDATE $? "downloading the code"
 
+     cd /app
+    VALIDATE $? "Moving to app directory"
+
     rm -rf /app/* &>>$LOGS_FILE
     VALIDATE $? "Clearing the previous code"
 
