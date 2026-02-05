@@ -41,9 +41,6 @@ nodejs_setup() {                                        #this for common nodejs 
     dnf install nodejs -y &>>$LOGS_FILE
     VALIDATE $? "installing nodejs" 
 
-    cd /app 
-    npm install  &>>$LOGS_FILE
-    VALIDATE $? "Installing dependencies"
 }
 
 java_setup() {
