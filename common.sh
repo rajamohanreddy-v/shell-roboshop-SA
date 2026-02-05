@@ -44,7 +44,7 @@ nodejs_setup() {                                        #this for common nodejs 
 }
 
 java_setup() {
-    dnf insatll maven -y &>>LOGS_FILE
+    dnf insatll maven -y &>>$LOGS_FILE
     VALIDATE $? "Installing Maven"
 
     cd /app 
