@@ -10,7 +10,7 @@ service_setup
 cp $SCRIPTD/mongo.repo /etc/yum.repos.d/mongo.repo
 dnf install mongodb-mongosh -y &>>$LOGS_FILE
 
-INDEX=$(mongosh --host $MONGODB--quiet  --eval 'db.getMongo().getDBNames().indexOf("catalogue")')
+INDEX=$(mongosh --host $MONGODB --quiet  --eval 'db.getMongo().getDBNames().indexOf("catalogue")')
 
 if [ $INDEX -le 0 ]; then
     mongosh --host $MONGODB </app/db/master-data.js &>>$LOGS_FILE
