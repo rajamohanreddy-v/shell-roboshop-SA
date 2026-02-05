@@ -1,9 +1,10 @@
 #!/bin/bash
+
 source ./common.sh
 
 checkroot
 
-cp "$SCRIPTD/mongo.repo" /etc/yum.repos.d/mongo.repo &>>"$LOGS_FILE"
+cp mongo.repo /etc/yum.repos.d/mongo.repo &>>"$LOGS_FILE"
 Validate $? "Copying mongo repo"
 
 dnf install mongodb-org -y &>>"$LOGS_FILE"
