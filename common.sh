@@ -15,7 +15,7 @@ N="\e[0m"
 mkdir -p "$LOG_FOLDER" #Creates Logfile folder
 
 
-ROOT_CHECK() {      #Checks whether root user or normal user
+checkroot() {      #Checks whether root user or normal user
 
 if [ "$USER_ID" -ne 0 ]; then
     echo -e "$R Please run the script with root user $N" 
