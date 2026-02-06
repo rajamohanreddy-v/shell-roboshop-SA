@@ -1,7 +1,7 @@
 #!/bin/bash
 USER_ID=$(id -u)
 LOG_FOLDER="/var/log/shell-roboshop"
-LOGS_FILE="/var/log/shell-roboshop/$0.log"
+LOGS_FILE="$LOG_FOLDER/$0.log"
 SCRIPTD=$PWD
 START=$(date +%s)
 MONGODB="mongodb.dawsrs.online"
@@ -33,13 +33,16 @@ VALIDATE() { if [ "$1" -ne 0 ]; then #Validates whether the commands working or 
 
 nodejs_setup() {                                        #this for common nodejs setup
     dnf module disable nodejs -y &>>$LOGS_FILE
-    VALIDATE $? "Disabling nodejs" 
+    VALIDATE $? "Disabling nodejs Default Version" 
 
     dnf module enable nodejs:20 -y &>>$LOGS_FILE
-    VALIDATE $? "enabling nodejs" 
+    VALIDATE $? "enabling nodejs 20" 
 
     dnf install nodejs -y &>>$LOGS_FILE
     VALIDATE $? "installing nodejs" 
+
+    npm install  &>>$LOGS_FILE
+    VALIDATE $? "Installing dependencies"
 
 }
 
