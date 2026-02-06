@@ -57,6 +57,7 @@ java_setup() {
     mv target/$app_name-1.0.jar $app_name.jar 
     VALIDATE $? "Moving and Renaming $app_name"
 
+
 }
 
 python_setup() {
