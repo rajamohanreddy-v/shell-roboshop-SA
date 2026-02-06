@@ -23,7 +23,7 @@ if [ "$USER_ID" -ne 0 ]; then
 fi
 }
 
-VALIDATE() { if [ "$1" -ne 0 ]; then #Validates whether the commands working or not
+VALIDATE() { if [ "$1" -ne 0 ]; then #VALIDATEs whether the commands working or not
     echo -e " "$2"...is "$R" Failed $N" | tee -a $LOGS_FILE
     exit 1
     else
@@ -115,39 +115,39 @@ nginix_setup() {
 
 dnf module disable nginx -y &>>"$LOGS_FILE"
 dnf module enable nginx:1.24 -y &>>"$LOGS_FILE"
-Validate $? "enabling nginx" 
+VALIDATE $? "enabling nginx" 
 
 dnf install nginx -y &>>"$LOGS_FILE"
-Validate $? "installing nginx" 
+VALIDATE $? "installing nginx" 
 
 curl -o /tmp/frontend.zip https://roboshop-artifacts.s3.amazonaws.com/$app_name-v3.zip &>>"$LOGS_FILE"
-Validate $? "copying code" 
+VALIDATE $? "copying code" 
 
 rm -rf /usr/share/nginx/html/*  &>>"$LOGS_FILE"
-Validate $? "removing existing code" 
+VALIDATE $? "removing existing code" 
 
 cd /usr/share/nginx/html &>>"$LOGS_FILE"
 unzip /tmp/frontend.zip &>>"$LOGS_FILE"
 rm -rf /etc/nginx/nginx.conf &>>"$LOGS_FILE"
 cp $SCRIPTD/nginx.conf /etc/nginx/nginx.conf &>>"$LOGS_FILE"
-Validate $? "copying configuration"
+VALIDATE $? "copying configuration"
 
 systemctl enable nginx &>>"$LOGS_FILE"
 systemctl start nginx &>>"$LOGS_FILE"
-Validate $? "starting nginx"
+VALIDATE $? "starting nginx"
 
 }
 
 golang_setup() {
 
 dnf install golang  -y &>>"$LOGS_FILE"
-Validate $? "installing golang"
+VALIDATE $? "installing golang"
 cd /app &>>"$LOGS_FILE"
-Validate $? "Redirecting to the app folder"
+VALIDATE $? "Redirecting to the app folder"
 go mod init dispatch &>>"$LOGS_FILE"
 go get &>>"$LOGS_FILE"
 go build &>>"$LOGS_FILE"
-Validate $? "installing dependencies"
+VALIDATE $? "installing dependencies"
 
 }
 
